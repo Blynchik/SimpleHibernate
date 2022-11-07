@@ -13,7 +13,7 @@ public class School {
 
     @Column(name = "school_number")private int schoolNumber;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "principal_id", referencedColumnName = "id")
     private Principal principal;
 
@@ -46,5 +46,14 @@ public class School {
 
     public void setPrincipal(Principal principal) {
         this.principal = principal;
+    }
+
+    @Override
+    public String toString() {
+        return "School{" +
+                "id=" + id +
+                ", schoolNumber=" + schoolNumber +
+                ", principal=" + principal +
+                '}';
     }
 }
