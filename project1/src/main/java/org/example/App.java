@@ -6,6 +6,9 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Hello world!
  */
@@ -20,8 +23,10 @@ public class App {
         try {
             session.beginTransaction();
 
-            Director director = session.get(Director.class, 3);
-            System.out.println(director);
+            Movie movie = session.get(Movie.class, 1);
+
+           session.remove(movie);
+           movie.setDirector(null);
 
             session.getTransaction().commit();
         } finally {
