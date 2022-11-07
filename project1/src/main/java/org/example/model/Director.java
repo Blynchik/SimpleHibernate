@@ -2,6 +2,8 @@ package org.example.model;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table(name = "director")
 public class Director {
@@ -16,6 +18,9 @@ public class Director {
 
     @Column(name = "age")
     private int age;
+
+    @OneToMany(mappedBy = "director")
+    private List<Movie> movies;
 
     public Director() {
     }
@@ -47,5 +52,13 @@ public class Director {
 
     public void setAge(int age) {
         this.age = age;
+    }
+
+    public List<Movie> getMovies() {
+        return movies;
+    }
+
+    public void setMovies(List<Movie> movies) {
+        this.movies = movies;
     }
 }
