@@ -8,17 +8,24 @@ import org.hibernate.cfg.Configuration;
 
 /**
  * Hello world!
- *
  */
-public class App 
-{
-    public static void main( String[] args )
-    {
-        Configuration configuration1 = new Configuration().addAnnotatedClass(Director.class)
+public class App {
+    public static void main(String[] args) {
+        Configuration configuration = new Configuration().addAnnotatedClass(Director.class)
                 .addAnnotatedClass(Movie.class);
 
-        SessionFactory sessionFactory = configuration1.buildSessionFactory();
+        SessionFactory sessionFactory = configuration.buildSessionFactory();
         Session session = sessionFactory.getCurrentSession();
 
+        try {
+            session.beginTransaction();
+
+            Director director = session.get(Director.class, 3);
+            System.out.println(director);
+
+            session.getTransaction().commit();
+        } finally {
+            sessionFactory.close();
+        }
     }
 }

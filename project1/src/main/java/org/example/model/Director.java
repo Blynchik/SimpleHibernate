@@ -61,4 +61,13 @@ public class Director {
     public void setMovies(List<Movie> movies) {
         this.movies = movies;
     }
+
+    @Override
+    public String toString() {
+        return "Director{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", age=" + age +
+                '}';
+    }
 }
