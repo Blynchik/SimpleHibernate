@@ -13,7 +13,9 @@ public class School {
 
     @Column(name = "school_number")private int schoolNumber;
 
-    @Column(name = "principal_id")private int principalId;
+    @OneToOne
+    @JoinColumn(name = "principal_id", referencedColumnName = "id")
+    private Principal principal;
 
     public School() {
     }
@@ -38,11 +40,11 @@ public class School {
         this.schoolNumber = schoolNumber;
     }
 
-    public int getPrincipalId() {
-        return principalId;
+    public Principal getPrincipal() {
+        return principal;
     }
 
-    public void setPrincipalId(int principalId) {
-        this.principalId = principalId;
+    public void setPrincipal(Principal principal) {
+        this.principal = principal;
     }
 }
